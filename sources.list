@@ -1,0 +1,20 @@
+# 
+
+# deb cdrom:[Debian GNU/Linux 8 _Jessie_ - Official Snapshot amd64 LIVE/INSTALL Binary 20160124-16:08]/ jessie main
+
+#deb cdrom:[Debian GNU/Linux 8 _Jessie_ - Official Snapshot amd64 LIVE/INSTALL Binary 20160124-16:08]/ jessie main
+
+# Line commented out by installer because it failed to verify:
+deb http://security.debian.org/ jessie/updates main
+# Line commented out by installer because it failed to verify:
+deb-src http://security.debian.org/ jessie/updates main
+deb http://ftp.de.debian.org/debian wheezy main
+deb http://ftp.de.debian.org/debian jessie main 
+deb http://ppa.launchpad.net/webupd8team/unstable/ubuntu maverick main
+deb http://ftp.us.debian.org/debian stable contrib non-free
+
+deb http://ppa.launchpad.net/ingalex/super-boot-manager/ubuntu maverick main
+
+deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+
+deb http://ppa.launchpad.net/obsproject/obs-studio/ubuntu maverick main
