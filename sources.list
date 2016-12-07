@@ -1,20 +1,255 @@
-# 
+###############################################################################
+# REPOSITORIOS OFICIALES DE LINUX DEBIAN 8 / 9                                                                                           #
+deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+deb http://ftp.us.debian.org/debian/ stretch main contrib non-free
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb http://security.debian.org/ stretch/updates main contrib non-free
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+deb http://ftp.us.debian.org/debian/ jessie-backports main contrib non-free
+deb http://www.deb-multimedia.org jessie main non-free
+deb http://www.deb-multimedia.org stretch main non-free
+#  
 
-# deb cdrom:[Debian GNU/Linux 8 _Jessie_ - Official Snapshot amd64 LIVE/INSTALL Binary 20160124-16:08]/ jessie main
+###############################################################################
 
-#deb cdrom:[Debian GNU/Linux 8 _Jessie_ - Official Snapshot amd64 LIVE/INSTALL Binary 20160124-16:08]/ jessie main
+###############################################################################
+# REPOSITORIOS OFICIALES PARA GOOGLE CHROME – TALKPLUGIN – GOOGLE EARTH                                   #
+deb http://dl.google.com/linux/chrome/deb/ stable main
+deb http://dl.google.com/linux/talkplugin/deb/ stable main
+deb http://dl.google.com/linux/earth/deb/ stable main
+# wget -q -O – https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add –
+#  
 
-# Line commented out by installer because it failed to verify:
-deb http://security.debian.org/ jessie/updates main
-# Line commented out by installer because it failed to verify:
-deb-src http://security.debian.org/ jessie/updates main
-deb http://ftp.de.debian.org/debian wheezy main
-deb http://ftp.de.debian.org/debian jessie main 
-deb http://ppa.launchpad.net/webupd8team/unstable/ubuntu maverick main
-deb http://ftp.us.debian.org/debian stable contrib non-free
+###############################################################################
 
-deb http://ppa.launchpad.net/ingalex/super-boot-manager/ubuntu maverick main
+###############################################################################
+# REPOSITORIOS OFICIALES DE MEGA
+deb http://mega.nz/linux/MEGAsync/Debian_8.0/ ./
+# aptitude install megasync megatools
+#                                                                                                                                                                             #
+###############################################################################
+#
 
-deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+###############################################################################
+# REPOSITORIOS OFICIALES DE KDE – PLASMA 5
+deb http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu utopic main
+deb http://ppa.launchpad.net/kubuntu-ppa/next-backports/ubuntu utopic main
+#
+###############################################################################
+#
 
-deb http://ppa.launchpad.net/obsproject/obs-studio/ubuntu maverick main
+
+Date: 8 junio, 2015
+Author: proyectotictac
+2 Comentarios
+      Rate This
+
+FELIZ JUNIO: 2015 (PUBLICACIÓN 176)
+
+Selección_004
+
+1506468_10152701335639538_3358328111488428241_n
+
+Un gran y cordial saludos a todos los Integrantes de la Gran Comunidad de Usuarios del Software Libre (No necesariamente gratis), Compañeros, Colegas y Autodidactas del Siglo XXI, Ingenieros en Telecomunicaciones, Sistemas e Informática, Licenciados y Técnicos de áreas afines.
+
+Esta es la novena publicación del Año 2015, y la Centésima Septuagésima Sexta (176°) publicación desde el año 2.011 (20/03/11). En esta publicación les vengo a ofrecer la oportunidad de crear (adaptar) a aquellos Usuarios habituales de DEBIAN 8 – Jessie, amantes de lo estable, utilizable y duradero, la oportunidad de convertir su magnifica Distro en una nueva que yo he llamado: LD9-UME2.
+
+LD9-UME2: Este nombre proviene del acrónimo del nombre “Linux DEBIAN 9 – Ubuntu Mint Edition Multi-Entornos”.  En fin, es un DEBIAN 8 (Estable / Jessie) actualizado a Debian 9 (Testing / Stretch) con Repositorios de Ubuntu 14.10 (Utopic) y Linux Mint DEBIAN Edition 2 (LMDE 2 – Betsy), y otros muchos repositorios adicionales para tener lo ultimo de lo ultimo en programas y estabilidad más rendimiento.
+
+Espero, que esta publicación les sirva para innovar, aprender, arriesgarse a ir ha un nivel superior de conocimientos y explorar nuevas y mas modernas Paqueterías, Distribuciones y Procedimientos. O por lo menos, a despejar cualquier duda sobre como usar una Distro GNU/Linux basada en DEBIAN u optimizarla a fondo.
+
+Bueno, aquí se los dejo!
+
+Parte I
+
+===============================================================================
+PASOS POST-INSTALACIÓN PARA ACTUALIZAR UN SISTEMAS OPERATIVOS DEBIAN 8 (JESSIE) EN UN SISTEMA OPERATIVO DEBIAN 9 (STRETCH) MULTI-ENTORNOS CON UBUNTU UTOPIC Y LINUX MINT EDITION 2 (BETSY) Y MUCHOS OTROS REPOSITORIOS MAS.
+
+===============================================================================
+
+NOTA IMPORTANTE: Lea primero todo el documento, antes de ejecutar cualquier acción. No realice nada si no sabe que significan las acciones a realizar o las ordenes de comando mencionadas, es decir, si no es un Usuario Experto o Especialista Técnico, o es uno de ellos pero que igual no sabe o entiende los pasos recomendados en este documento. Busque información en Google primero al respecto si tiene dudas respetables sobre cada paso a ejecutar, antes de solicitar ayuda o aclaratorias sobre puntos básicos o elementales aquí descritos a terceros. Y al ejecutar cualquiera de estos pasos, fíjese bien en los mensajes de la consola, sobre todo los que dicen “Se eliminaran los siguientes paquetes …”
+
+===============================================================================
+
+PASO 1: REALIZAR CONFIGURACIONES BÁSICAS DE RED
+
+1.0 EDITAR Y OPTIMIZAR EL NETWORK MANAGER Y EL NETWORK INTERFACE
+
+– Editar el archivo de configuración del Network Manager con la orden de comando:
+
+nano /etc/NetworkManager/NetworkManager.conf
+
+– Cambiar la palabra “false” por “true”
+
+– Guardar los cambios
+
+– Reiniciar el servicio con la orden de comando:
+
+service network-manager restart
+
+– Editar el archivo de configuración del Network Interface con la orden de comando:
+
+nano /etc/network/interfaces
+
+– Cambiar la configuración actual por la nueva:
+
+ACTUAL
+=========================
+
+auto lo
+iface lo inet loopback
+
+allow-hotplug eth0
+
+NUEVA
+=========================
+
+auto lo
+iface lo inet loopback
+
+auto eth0
+allow-hotplug eth0
+#iface eth0 inet dhcp
+
+– Reiniciar el servicio con la orden de comando:
+
+service networking restart
+
+1.1 CONFIGURAR EL PROXY DEL SISTEMA Y DEL NAVEGADOR WEB
+
+Nota: Solo realizar en caso de que su equipo este en una Infraestructura con Proxy para Navegar el Internet.
+
+ABRIR LA APLICACIÓN “PREFERENCIAS DEL SISTEMA” (o Equivalente), LUEGO LAS OPCIONES PREFERENCIAS DE RED (o Equivalente) Y OPCIÓN DE CONFIGURACIÓN DE PROXY MANUAL (o Equivalente) DE SU SISTEMA OPERATIVO.
+
+ABRIR LA APLICACIÓN DE SU NAVEGADOR DE INTERNET ” (o Equivalente), LUEGO LAS OPCIONES EDITAR, PREFERENCIAS, AVANZADO, RED, CONFIGURACIÓN Y CONFIGURACIÓN MANUAL DE PROXY (o Equivalente).
+
+1.2 EDITAR SOURCES.LIST CON LA ORDEN DE COMANDO:
+
+Edite su archivo de Repositorios con la orden de comando:
+
+nano /etc/apt/sources.list
+
+REEMPLAZAR CONTENIDO ACTUAL CON EL MOSTRADO A CONTINUACIÓN
+
+###############################################################################
+# REPOSITORIOS OFICIALES DE LINUX DEBIAN 8 / 9                                                                                           #
+deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+deb http://ftp.us.debian.org/debian/ stretch main contrib non-free
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb http://security.debian.org/ stretch/updates main contrib non-free
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+deb http://ftp.us.debian.org/debian/ jessie-backports main contrib non-free
+deb http://www.deb-multimedia.org jessie main non-free
+deb http://www.deb-multimedia.org stretch main non-free
+#                                                                                                                                                                             #
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS OFICIALES PARA GOOGLE CHROME – TALKPLUGIN – GOOGLE EARTH                                   #
+deb http://dl.google.com/linux/chrome/deb/ stable main
+deb http://dl.google.com/linux/talkplugin/deb/ stable main
+deb http://dl.google.com/linux/earth/deb/ stable main
+# wget -q -O – https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add –
+#                                                                                                                                                                             #
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS OFICIALES DE LMDE
+deb http://packages.linuxmint.com/ debian main upstream import backport # romeo
+deb http://packages.linuxmint.com/ betsy main upstream import backport # romeo
+deb http://extra.linuxmint.com betsy main
+# aptitude install linuxmint-keyring
+#                                                                                                                                                                             #
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS OFICIALES DE OPERA
+deb http://deb.opera.com/opera-beta/ stable non-free
+# wget -O – http://deb.opera.com/archive.key | apt-key add –
+#                                                                                                                                                                             #
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS PPA DE CONKY MANAGER BASADO EN UBUNTU TRUSTY
+deb http://ppa.launchpad.net/teejee2008/ppa/ubuntu trusty main
+# apt-key adv –keyserver keyserver.ubuntu.com –recv-keys B5B116B72D0F61F0
+# gpg –keyserver subkeys.pgp.net –recv-keys B5B116B72D0F61F0 | gpg –export –armor B5B116B72D0F61F0 | apt-key add –
+#                                                                                                                                                                             #
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS PPA DE POPCORN TIME BASADO EN UBUNTU TRUSTY
+deb http://ppa.launchpad.net/webupd8team/popcorntime/ubuntu trusty main
+# apt-key adv –keyserver pgp.mit.edu –recv-keys C2518248EEA14886
+# gpg –keyserver subkeys.pgp.net –recv-keys C2518248EEA14886 | gpg –export –armor C2518248EEA14886 | apt-key add –
+#                                                                                                                                                                              #
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS OFICIALES DE MEGA
+deb http://mega.nz/linux/MEGAsync/Debian_8.0/ ./
+# aptitude install megasync megatools
+#                                                                                                                                                                             #
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS OFICIALES DE DROPBOX
+deb http://linux.dropbox.com/debian jessie main
+# wget -O – http://linux.dropbox.com/fedora/rpm-public-key.asc | apt-key add –
+# apt-key adv –keyserver pgp.mit.edu –recv-keys FC918B335044912E
+#                                                                                                                                                                              #
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS OFICIALES DE UBUNTU UTOPIC                                                                                               #
+deb http://ve.archive.ubuntu.com/ubuntu/ utopic main restricted
+# deb http://ve.archive.ubuntu.com/ubuntu/ utopic-updates main restricted
+deb http://ve.archive.ubuntu.com/ubuntu/ utopic universe
+# deb http://ve.archive.ubuntu.com/ubuntu/ utopic-updates universe
+deb http://ve.archive.ubuntu.com/ubuntu/ utopic multiverse
+# deb http://ve.archive.ubuntu.com/ubuntu/ utopic-updates multiverse
+# deb http://ve.archive.ubuntu.com/ubuntu/ utopic-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu utopic-security main restricted
+deb http://security.ubuntu.com/ubuntu utopic-security universe
+deb http://security.ubuntu.com/ubuntu utopic-security multiverse
+# deb http://archive.canonical.com/ubuntu utopic partner
+# deb http://extras.ubuntu.com/ubuntu utopic main
+#
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS OFICIALES DE KDE – PLASMA 5
+deb http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu utopic main
+deb http://ppa.launchpad.net/kubuntu-ppa/next-backports/ubuntu utopic main
+#
+###############################################################################
+
+###############################################################################
+# REPOSITORIOS EXTRAS PARA APLICACIONES IMPORTANTES MULTI-PLATAFORMAS                                     #
+deb http://deb.playonlinux.com/ trusty main
+deb http://repository.spotify.com stable non-free
+deb http://ppa.launchpad.net/libreoffice/ppa/ubuntu utopic main
+deb http://ppa.launchpad.net/ubuntu-wine/ppa/ubuntu utopic main
+deb http://ppa.launchpad.net/otto-kesselgulasch/gimp/ubuntu utopic main
+deb http://ppa.launchpad.net/gnome3-team/gnome3/ubuntu utopic main
+deb [arch=amd64,i386] http://repo.steampowered.com/steam/ precise steam
+#
+###############################################################################
+#
+
+###############################################################################
+# LLAVES PARA REPOSITORIOS DE UBUNTU – KUBUNTU Y APLICACIONES EXTRAS                                          #
+
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com 40976EAF437D05B5
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com 16126D3A3E5C1192
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com E0F72778C4676186
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com 082CCEDF94558F59
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com 83FBA1751378B444
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com 5A9A06AEF9CB8DB0
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com 3BDAAC08614C4B38
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com F1773AF13B1510FD
+# apt-key adv –recv-keys –keyserver \ keyserver.ubuntu.com F24AEA9FB05498B7
+
+#
+###############################################################################
+#
